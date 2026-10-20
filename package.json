@@ -1,0 +1,18 @@
+{
+  "name": "dubai-friends-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dubai Friends App - Connecting newcomers, students, professionals, events & jobs in Dubai",
+  "scripts": {
+    "dev:web": "pnpm --filter web dev",
+    "build:web": "pnpm --filter web build",
+    "start:web": "pnpm --filter web start",
+    "dev:mobile": "pnpm --filter mobile start",
+    "lint": "pnpm -r run lint",
+    "type-check": "pnpm -r run type-check"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5"
+  }
+}
