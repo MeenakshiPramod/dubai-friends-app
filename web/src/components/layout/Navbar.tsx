@@ -9,7 +9,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   const navLinks = [
-    { href: '/discover', label: 'Find Friends', icon: Users, badge: 'Matching' },
+    { href: '/discover', label: 'AI People Search', icon: Users, badge: 'Happenstance AI' },
     { href: '/events', label: 'Events & Map', icon: Calendar },
     { href: '/jobs', label: 'Jobs & Fairs', icon: Briefcase },
     { href: '/chat', label: 'Community Chat', icon: MessageSquare, badge: '4' },
@@ -29,9 +29,9 @@ export default function Navbar() {
             <div>
               <div className="font-extrabold text-xl tracking-tight text-slate-900 flex items-center gap-1.5">
                 Dubai<span className="text-amber-600">Friends</span>
-                <span className="text-[10px] font-bold uppercase tracking-wider bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded-full">V1</span>
+                <span className="text-[10px] font-extrabold uppercase tracking-wider bg-amber-100 text-amber-900 border border-amber-300/80 px-1.5 py-0.5 rounded-full">YC V2.0 AI</span>
               </div>
-              <p className="text-[10px] text-slate-500 -mt-1 font-medium">Connect • Events • Careers</p>
+              <p className="text-[10px] text-slate-500 -mt-1 font-medium">Warm Relationship Intelligence • Events • Jobs</p>
             </div>
           </Link>
 

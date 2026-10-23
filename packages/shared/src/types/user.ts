@@ -27,6 +27,19 @@ export interface UserProfile {
   is_online?: boolean;
   last_seen?: string;
   created_at?: string;
+  // Happenstance-style Relationship & Warm Network Intelligence
+  company?: string;
+  can_refer?: boolean;
+  referral_company?: string;
+  mutual_connections?: string[];
+  shared_events?: string[];
+  warm_intro_path?: {
+    bridgePerson: string;
+    relationship: string;
+    note: string;
+  };
+  ai_match_score?: number;
+  ai_match_reasons?: string[];
 }
 
 export interface OrganizationProfile {

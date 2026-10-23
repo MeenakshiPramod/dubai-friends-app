@@ -35,7 +35,54 @@ export const MOCK_USERS: UserProfile[] = [
     bio: 'Malayali AI student building autonomous agents. Looking to meet fellow AI students & hackathon buddies!',
     avatar_url: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=300',
     interests: ['ai_ml', 'robotics', 'web_dev', 'foodies'],
-    is_online: true
+    is_online: true,
+    mutual_connections: ['Sneha Nair', 'Faisal Al-Mansoor'],
+    shared_events: ['GITEX Career Fair & Tech Talent Expo 2026', 'Dubai AI & Student Builders Hack-Night'],
+    ai_match_score: 98,
+    ai_match_reasons: [
+      'Both studying AI & Robotics in Dubai',
+      'Shared Malayali cultural heritage',
+      'Both attending GITEX 2026 Career Fair'
+    ],
+    warm_intro_path: {
+      bridgePerson: 'Sneha Nair',
+      relationship: 'Classmate at Middlesex',
+      note: 'Sneha can introduce you directly'
+    }
+  },
+  {
+    id: 'user-7',
+    email: 'arjun.v@careem.com',
+    first_name: 'Arjun',
+    last_name: 'Varma',
+    date_of_birth: '1997-04-12',
+    role: 'user',
+    status: 'active',
+    region: 'kerala',
+    user_status: 'professional',
+    field_of_study: 'Distributed Systems',
+    occupation: 'Senior Staff Engineer',
+    company: 'Careem Technologies',
+    dubai_area: 'Dubai Internet City',
+    bio: 'Malayali engineer at Careem since 3 years. Happy to refer fresh grads and AI students to our backend & mobility squads!',
+    avatar_url: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=300',
+    interests: ['ai_ml', 'web_dev', 'startups', 'study_groups'],
+    is_online: true,
+    can_refer: true,
+    referral_company: 'Careem Technologies',
+    mutual_connections: ['Rahul Menon'],
+    shared_events: ['GITEX Career Fair & Tech Talent Expo 2026'],
+    ai_match_score: 95,
+    ai_match_reasons: [
+      'Open for Careem engineering referrals',
+      'Senior Malayali tech mentor in Dubai',
+      'Key speaker at GITEX Tech Talent Expo'
+    ],
+    warm_intro_path: {
+      bridgePerson: 'Rahul Menon',
+      relationship: 'Connected on LinkedIn',
+      note: 'Rahul had coffee with Arjun at in5 Tech'
+    }
   },
   {
     id: 'user-3',
@@ -52,7 +99,20 @@ export const MOCK_USERS: UserProfile[] = [
     bio: 'Finance graduate from Delhi, arrived in Dubai 2 weeks ago looking for analyst roles. Let us connect for networking & job fairs!',
     avatar_url: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=300',
     interests: ['startups', 'crypto_fintech', 'real_estate'],
-    is_online: true
+    is_online: true,
+    mutual_connections: ['Sneha Nair'],
+    shared_events: ['GITEX Career Fair & Tech Talent Expo 2026'],
+    ai_match_score: 89,
+    ai_match_reasons: [
+      'Fellow newcomer to Dubai (arrived this month)',
+      'Attending GITEX Career Fair',
+      'Both looking for tech/finance opportunities'
+    ],
+    warm_intro_path: {
+      bridgePerson: 'Sneha Nair',
+      relationship: 'Hostel roommates in Al Barsha',
+      note: 'Sneha can connect you for study sessions'
+    }
   },
   {
     id: 'user-4',
@@ -65,12 +125,27 @@ export const MOCK_USERS: UserProfile[] = [
     region: 'arab_emirati',
     user_status: 'entrepreneur',
     field_of_study: 'Software Enterprise',
+    company: 'Hub71 Ventures Partner',
     dubai_area: 'Downtown Dubai',
     bio: 'Dubai native building tech communities. Happy to guide students and newcomers settling into the city.',
     avatar_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300',
     interests: ['startups', 'ai_ml', 'real_estate'],
     is_online: false,
-    last_seen: '2 hours ago'
+    last_seen: '2 hours ago',
+    can_refer: true,
+    referral_company: 'Hub71 Startups',
+    mutual_connections: ['Rahul Menon', 'Arjun Varma'],
+    shared_events: ['Dubai AI & Student Builders Hack-Night'],
+    ai_match_score: 91,
+    ai_match_reasons: [
+      'Hub71 ecosystem mentor in Downtown Dubai',
+      'Actively supporting newcomer student founders'
+    ],
+    warm_intro_path: {
+      bridgePerson: 'Arjun Varma',
+      relationship: 'Co-organized AI Hackathons',
+      note: 'Arjun can provide a warm mentor introduction'
+    }
   },
   {
     id: 'user-5',
@@ -88,7 +163,19 @@ export const MOCK_USERS: UserProfile[] = [
     bio: 'BBA 2nd year student. Malayali in Dubai, loves exploring cafes, photography and attending business conferences.',
     avatar_url: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=300',
     interests: ['marketing', 'photography', 'foodies', 'study_groups'],
-    is_online: true
+    is_online: true,
+    mutual_connections: ['Rahul Menon', 'Ananya Sharma'],
+    shared_events: ['Malayali Students & Newcomers Meetup'],
+    ai_match_score: 92,
+    ai_match_reasons: [
+      'Malayali student community lead in Al Barsha',
+      'Attending upcoming Zabeel Park meetup'
+    ],
+    warm_intro_path: {
+      bridgePerson: 'Rahul Menon',
+      relationship: 'Childhood family friend from Kochi',
+      note: 'Rahul can introduce you in the WhatsApp group'
+    }
   },
   {
     id: 'user-6',
@@ -105,7 +192,19 @@ export const MOCK_USERS: UserProfile[] = [
     bio: 'React & Node.js developer on visit visa exploring opportunities in UAE. Open for study groups & job referral chats!',
     avatar_url: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=300',
     interests: ['web_dev', 'cybersecurity', 'football_cricket'],
-    is_online: true
+    is_online: true,
+    mutual_connections: ['Arjun Varma'],
+    shared_events: ['GITEX Career Fair & Tech Talent Expo 2026'],
+    ai_match_score: 84,
+    ai_match_reasons: [
+      'Fullstack engineer attending GITEX Career Fair',
+      'Both working on TypeScript & modern web applications'
+    ],
+    warm_intro_path: {
+      bridgePerson: 'Arjun Varma',
+      relationship: 'Reviewed Tariq’s GitHub open source code',
+      note: 'Arjun can endorse Tariq’s React skills'
+    }
   }
 ];
 
