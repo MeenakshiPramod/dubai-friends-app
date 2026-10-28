@@ -4,8 +4,7 @@ import { useState } from 'react';
 import { 
   Send, 
   Users, 
-  Circle,
-  MessageSquare
+  Circle
 } from 'lucide-react';
 import { MOCK_CONVERSATIONS, MOCK_CURRENT_USER } from '@/lib/mockData';
 
@@ -19,7 +18,7 @@ export default function ChatPage() {
     'conv-1': [
       { id: '1', sender: 'Rahul Menon', text: 'Hey Meenakshi! Welcome to Dubai! Are you studying at Middlesex or Wollongong?', time: '11:45 AM', isMe: false },
       { id: '2', sender: 'Meenakshi', text: 'Hey Rahul! I am focusing on AI engineering and exploring data science study circles. Are you attending GITEX this weekend?', time: '11:50 AM', isMe: true },
-      { id: '3', sender: 'Rahul Menon', text: 'Yes, definitely! There is a group of us Malayali students meeting at DWTC. Let us coordinate!', time: '11:52 AM', isMe: false }
+      { id: '3', sender: 'Rahul Menon', text: 'Yes, definitely! There is a group of us Malayali students meeting at DWTC. Let us coordinate travel!', time: '11:52 AM', isMe: false }
     ],
     'conv-2': [
       { id: '1', sender: 'Ananya Sharma', text: 'Hi everyone! Who is heading to the Career Fair from Business Bay or Marina?', time: '09:15 AM', isMe: false },
@@ -53,32 +52,37 @@ export default function ChatPage() {
   };
 
   return (
-    <div className="bg-[#FAF8F4] min-h-screen text-[#172520] pb-24">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8 pt-12 space-y-6">
+    <div className="bg-[#FDFBF7] min-h-screen text-[#0B353D] pb-24">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8 pt-10 space-y-6">
         
         {/* Header */}
-        <div className="border-b border-[#EDE8DE] pb-6 space-y-1">
-          <span className="text-xs font-sans text-[#708077] tracking-wider uppercase font-medium">
-            Messages & Event Channels
-          </span>
-          <h1 className="font-serif text-3xl sm:text-4xl text-[#10271D]">
+        <div className="border-b-2 border-[#DDEEF1] pb-6 space-y-1 text-left">
+          <div className="flex items-center gap-2">
+            <span className="text-[11px] font-bold px-3 py-1 rounded-full bg-[#D5F3EE] text-[#062026] uppercase tracking-wider">
+              💬 Direct & IRL Channels
+            </span>
+            <span className="text-[11px] font-bold px-3 py-1 rounded-full bg-[#FFE5E0] text-[#E4432C]">
+              Zero Spam Enforced
+            </span>
+          </div>
+          <h1 className="font-serif text-3xl sm:text-4xl text-[#0B353D] font-extrabold tracking-tight">
             Community Conversations
           </h1>
         </div>
 
         {/* Chat Container */}
-        <div className="bg-white rounded-3xl border border-[#EDE8DE] shadow-[0_2px_12px_rgba(23,54,40,0.02)] overflow-hidden grid grid-cols-1 md:grid-cols-12 min-h-[620px]">
+        <div className="bg-white rounded-3xl border-2 border-[#DDEEF1] shadow-md overflow-hidden grid grid-cols-1 md:grid-cols-12 min-h-[620px]">
           
           {/* Left Column: Conversation List */}
-          <div className="md:col-span-4 border-r border-[#EDE8DE] flex flex-col bg-[#FAF8F4]/50">
-            <div className="p-4 border-b border-[#EDE8DE] bg-white flex items-center justify-between">
-              <span className="text-xs font-serif font-bold text-[#10271D]">Active Threads</span>
-              <span className="text-[10px] text-[#2A5C46] bg-[#E8F1EC] px-2 py-0.5 rounded-full font-medium">
+          <div className="md:col-span-4 border-r-2 border-[#DDEEF1] flex flex-col bg-[#FDFBF7]">
+            <div className="p-4 border-b-2 border-[#DDEEF1] bg-white flex items-center justify-between text-left">
+              <span className="text-xs font-serif font-bold text-[#0B353D]">Active Channels</span>
+              <span className="text-[10px] text-[#062026] bg-[#D5F3EE] px-2.5 py-0.5 rounded-full font-bold">
                 {conversations.length} Active
               </span>
             </div>
 
-            <div className="divide-y divide-[#EDE8DE] overflow-y-auto flex-1">
+            <div className="divide-y divide-[#DDEEF1] overflow-y-auto flex-1 text-left">
               {conversations.map((conv) => {
                 const isActive = conv.id === activeConvId;
                 const isGroup = conv.type === 'group';
@@ -88,12 +92,12 @@ export default function ChatPage() {
                     key={conv.id}
                     onClick={() => setActiveConvId(conv.id)}
                     className={`p-4 cursor-pointer transition-colors flex items-start space-x-3.5 ${
-                      isActive ? 'bg-[#E8F1EC]/60' : 'hover:bg-[#F5F2EB]/50'
+                      isActive ? 'bg-[#D5F3EE]' : 'hover:bg-[#F0FAF8]'
                     }`}
                   >
                     <div className="relative flex-shrink-0">
                       {isGroup ? (
-                        <div className="w-11 h-11 rounded-2xl bg-[#1F4735] text-white flex items-center justify-center font-bold text-sm">
+                        <div className="w-11 h-11 rounded-2xl bg-[#0B353D] text-[#32C6B2] flex items-center justify-center font-bold text-sm shadow-xs">
                           <Users className="w-5 h-5" />
                         </div>
                       ) : (
@@ -101,10 +105,10 @@ export default function ChatPage() {
                           <img
                             src={conv.participants[0]?.avatar_url}
                             alt="Avatar"
-                            className="w-11 h-11 rounded-2xl object-cover ring-1 ring-[#1F4735]/15"
+                            className="w-11 h-11 rounded-2xl object-cover ring-2 ring-[#32C6B2]/30"
                           />
                           {conv.participants[0]?.is_online && (
-                            <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-[#2A5C46] rounded-full ring-2 ring-white" />
+                            <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-[#1BB6A2] rounded-full ring-2 ring-white" />
                           )}
                         </>
                       )}
@@ -112,21 +116,21 @@ export default function ChatPage() {
 
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between">
-                        <h4 className="text-xs font-semibold text-[#10271D] truncate">
+                        <h4 className="text-xs font-bold text-[#0B353D] truncate">
                           {isGroup ? conv.title : `${conv.participants[0]?.first_name} ${conv.participants[0]?.last_name}`}
                         </h4>
-                        <span className="text-[10px] text-[#708077]">
+                        <span className="text-[10px] text-[#1B6370]">
                           {conv.last_message?.created_at}
                         </span>
                       </div>
 
-                      <p className="text-xs text-[#52665E] truncate mt-1">
+                      <p className="text-xs text-[#1B6370] truncate mt-1">
                         {conv.last_message?.content}
                       </p>
 
                       {isGroup && (
-                        <span className="inline-block mt-1.5 text-[9px] font-sans font-medium text-[#1F4735] bg-[#E8F1EC] px-2 py-0.5 rounded-full">
-                          Event Group
+                        <span className="inline-block mt-1.5 text-[9px] font-sans font-bold text-[#E4432C] bg-[#FFE5E0] px-2.5 py-0.5 rounded-full">
+                          Travel & Meetup Group
                         </span>
                       )}
                     </div>
@@ -137,13 +141,13 @@ export default function ChatPage() {
           </div>
 
           {/* Right Column: Chat Window */}
-          <div className="md:col-span-8 flex flex-col bg-white h-full">
+          <div className="md:col-span-8 flex flex-col bg-white h-full text-left">
             
             {/* Header */}
-            <div className="p-4 border-b border-[#EDE8DE] flex items-center justify-between bg-white">
+            <div className="p-4 border-b-2 border-[#DDEEF1] flex items-center justify-between bg-white">
               <div className="flex items-center space-x-3">
                 {activeConv.type === 'group' ? (
-                  <div className="w-10 h-10 rounded-2xl bg-[#1F4735] text-white flex items-center justify-center font-bold">
+                  <div className="w-10 h-10 rounded-2xl bg-[#0B353D] text-[#32C6B2] flex items-center justify-center font-bold">
                     <Users className="w-5 h-5" />
                   </div>
                 ) : (
@@ -151,23 +155,23 @@ export default function ChatPage() {
                     <img
                       src={activeConv.participants[0]?.avatar_url}
                       alt="Avatar"
-                      className="w-10 h-10 rounded-2xl object-cover ring-1 ring-[#1F4735]/15"
+                      className="w-10 h-10 rounded-2xl object-cover ring-2 ring-[#32C6B2]/30"
                     />
-                    <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-[#2A5C46] rounded-full ring-2 ring-white" />
+                    <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-[#1BB6A2] rounded-full ring-2 ring-white" />
                   </div>
                 )}
 
                 <div>
-                  <h3 className="font-serif text-base text-[#10271D]">
+                  <h3 className="font-serif text-base font-bold text-[#0B353D]">
                     {activeConv.type === 'group' ? activeConv.title : `${activeConv.participants[0]?.first_name} ${activeConv.participants[0]?.last_name}`}
                   </h3>
-                  <p className="text-[11px] text-[#708077] flex items-center gap-1.5">
+                  <p className="text-[11px] text-[#1B6370] flex items-center gap-1.5">
                     {activeConv.type === 'group' ? (
                       <span>{activeConv.participants.length + 1} community members</span>
                     ) : (
                       <>
-                        <Circle className="w-2 h-2 fill-[#2A5C46] text-[#2A5C46]" />
-                        <span>Online • Dubai</span>
+                        <Circle className="w-2 h-2 fill-[#1BB6A2] text-[#1BB6A2]" />
+                        <span className="font-medium text-[#1BB6A2]">Active in Dubai</span>
                       </>
                     )}
                   </p>
@@ -176,27 +180,27 @@ export default function ChatPage() {
             </div>
 
             {/* Messages Feed */}
-            <div className="flex-1 p-6 overflow-y-auto space-y-4 bg-[#FAF8F4]/30">
+            <div className="flex-1 p-6 overflow-y-auto space-y-4 bg-[#FDFBF7]">
               {currentMessages.map((msg) => (
                 <div
                   key={msg.id}
                   className={`flex flex-col ${msg.isMe ? 'items-end' : 'items-start'}`}
                 >
                   {!msg.isMe && (
-                    <span className="text-[11px] text-[#708077] mb-1 ml-1 font-medium">
+                    <span className="text-[11px] text-[#1B6370] mb-1 ml-1 font-bold">
                       {msg.sender}
                     </span>
                   )}
                   <div
                     className={`max-w-md px-4 py-2.5 rounded-2xl text-xs leading-relaxed shadow-xs ${
                       msg.isMe
-                        ? 'bg-[#1F4735] text-[#FAF8F4] font-medium'
-                        : 'bg-white text-[#172520] border border-[#EDE8DE]'
+                        ? 'bg-[#0B353D] text-white font-medium'
+                        : 'bg-white text-[#0B353D] border-2 border-[#DDEEF1]'
                     }`}
                   >
                     {msg.text}
                   </div>
-                  <span className="text-[10px] text-[#8D9B93] mt-1 mx-1">
+                  <span className="text-[10px] text-[#1B6370]/60 mt-1 mx-1">
                     {msg.time}
                   </span>
                 </div>
@@ -204,18 +208,18 @@ export default function ChatPage() {
             </div>
 
             {/* Input Form */}
-            <form onSubmit={handleSendMessage} className="p-3.5 border-t border-[#EDE8DE] bg-white flex items-center gap-2">
+            <form onSubmit={handleSendMessage} className="p-3.5 border-t-2 border-[#DDEEF1] bg-white flex items-center gap-2">
               <input
                 type="text"
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 placeholder="Type your message..."
-                className="flex-1 text-xs px-4 py-3 rounded-full border border-[#EDE8DE] focus:outline-none focus:border-[#2A5C46] bg-[#FAF8F4]/50"
+                className="flex-1 text-xs px-4 py-3 rounded-full border-2 border-[#DDEEF1] focus:outline-none focus:border-[#32C6B2] bg-[#FDFBF7] text-[#0B353D]"
               />
               <button
                 type="submit"
                 disabled={!inputText.trim()}
-                className="bg-[#1F4735] hover:bg-[#16382B] disabled:bg-[#EDE8DE] disabled:text-[#8D9B93] text-white p-3 rounded-full transition-all flex items-center justify-center"
+                className="bg-[#FF573F] hover:bg-[#E4432C] disabled:bg-[#DDEEF1] disabled:text-[#1B6370] text-white p-3 rounded-full transition-all flex items-center justify-center shadow-md shadow-[#FF573F]/25 hover:scale-105"
               >
                 <Send className="w-4 h-4" />
               </button>

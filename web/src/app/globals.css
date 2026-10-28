@@ -3,35 +3,43 @@
 @tailwind utilities;
 
 :root {
-  --bg-cream: #FAF8F4;
-  --text-forest: #172520;
+  --bg-cream: #FDFBF7;
+  --text-marine: #0B353D;
+  --accent-mint: #1BB6A2;
+  --accent-coral: #FF573F;
 }
 
 body {
-  background-color: var(--bg-cream);
-  color: var(--text-forest);
+  background-color: #FDFBF7;
+  color: #0B353D;
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
 }
 
-/* Elegant editorial typography accents */
-.font-editorial {
-  font-family: var(--font-serif), Georgia, serif;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-}
-
-/* Subtle, soft scrollbars */
+/* Playful custom scrollbars */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D8D2C4;
+  background: #C2E1E6;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #B8B09F;
+  background: #32C6B2;
+}
+
+/* Glass & Pastel Card effects */
+.card-pastel-frame {
+  background: #DDEEF1;
+  border: 2px solid #C2E1E6;
+  box-shadow: 0 10px 30px -10px rgba(11, 53, 61, 0.08);
+}
+
+.card-peach-frame {
+  background: #FDEEE8;
+  border: 2px solid #FAD8CC;
+  box-shadow: 0 10px 30px -10px rgba(255, 87, 63, 0.08);
 }

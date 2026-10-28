@@ -7,7 +7,8 @@ import {
   ShieldCheck, 
   AlertCircle, 
   CheckCircle2,
-  ArrowRight
+  ArrowRight,
+  Sparkles
 } from 'lucide-react';
 import { REGIONS, DUBAI_AREAS, USER_STATUS_OPTIONS, INTEREST_ITEMS } from '@dubai-friends/shared';
 import { MOCK_CURRENT_USER } from '@/lib/mockData';
@@ -60,63 +61,63 @@ export default function OnboardingPage() {
   };
 
   return (
-    <div className="bg-[#FAF8F4] min-h-screen text-[#172520] pb-24">
-      <div className="max-w-2xl mx-auto px-6 lg:px-8 pt-12 space-y-8">
+    <div className="bg-[#FDFBF7] min-h-screen text-[#0B353D] pb-24 text-left">
+      <div className="max-w-2xl mx-auto px-6 lg:px-8 pt-10 space-y-8">
         
         {/* Header */}
-        <div className="space-y-2 border-b border-[#EDE8DE] pb-6">
-          <div className="inline-flex items-center space-x-1.5 text-xs text-[#1F4735] font-medium bg-[#E8F1EC] px-3 py-1 rounded-full">
-            <ShieldCheck className="w-3.5 h-3.5" />
+        <div className="space-y-2 border-b-2 border-[#DDEEF1] pb-6">
+          <div className="inline-flex items-center space-x-1.5 text-xs text-[#062026] font-bold bg-[#D5F3EE] px-3.5 py-1 rounded-full border border-[#A9E8DE]">
+            <ShieldCheck className="w-4 h-4 text-[#1BB6A2]" />
             <span>18+ Community Member Profile</span>
           </div>
-          <h1 className="font-serif text-3xl sm:text-4xl text-[#10271D]">
-            Set up your profile
+          <h1 className="font-serif text-3xl sm:text-4xl text-[#0B353D] font-extrabold tracking-tight">
+            Set up your member profile
           </h1>
-          <p className="text-xs sm:text-sm text-[#52665E]">
-            Share your roots, major, and Dubai neighborhood so peers can discover you naturally.
+          <p className="text-xs sm:text-sm text-[#1B6370] font-normal">
+            Share your regional roots, study track, and Dubai neighborhood so peers can discover you naturally.
           </p>
         </div>
 
         {ageError && (
-          <div className="p-4 rounded-2xl bg-[#FDF6F3] border border-[#F4D2C5] text-[#A44224] text-xs flex items-center gap-2">
+          <div className="p-4 rounded-2xl bg-[#FFE5E0] border-2 border-[#FFCBC2] text-[#BD301C] text-xs font-bold flex items-center gap-2">
             <AlertCircle className="w-4 h-4 flex-shrink-0" />
             <span>{ageError}</span>
           </div>
         )}
 
         {isSaved && (
-          <div className="p-4 rounded-2xl bg-[#E8F1EC] border border-[#D5E4DB] text-[#1F4735] text-xs flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-[#2A5C46]" />
+          <div className="p-4 rounded-2xl bg-[#D5F3EE] border-2 border-[#32C6B2] text-[#062026] text-xs font-bold flex items-center gap-2">
+            <CheckCircle2 className="w-4 h-4 text-[#1BB6A2]" />
             <span>Profile updated successfully! Redirecting to Discover...</span>
           </div>
         )}
 
         {/* Form Container */}
-        <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-6 sm:p-8 border border-[#EDE8DE] shadow-[0_2px_12px_rgba(23,54,40,0.02)] space-y-6">
+        <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-[#DDEEF1] shadow-md space-y-6">
           
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-[#10271D] mb-1.5">First Name</label>
+              <label className="block text-xs font-bold text-[#0B353D] mb-1.5">First Name</label>
               <input
                 type="text"
                 required
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-[#EDE8DE] bg-[#FAF8F4]/50 focus:outline-none focus:border-[#2A5C46]"
+                className="w-full text-xs px-3.5 py-2.5 rounded-xl border-2 border-[#DDEEF1] bg-[#FDFBF7] text-[#0B353D] focus:outline-none focus:border-[#32C6B2]"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-[#10271D] mb-1.5">Last Name</label>
+              <label className="block text-xs font-bold text-[#0B353D] mb-1.5">Last Name</label>
               <input
                 type="text"
                 required
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-[#EDE8DE] bg-[#FAF8F4]/50 focus:outline-none focus:border-[#2A5C46]"
+                className="w-full text-xs px-3.5 py-2.5 rounded-xl border-2 border-[#DDEEF1] bg-[#FDFBF7] text-[#0B353D] focus:outline-none focus:border-[#32C6B2]"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-[#10271D] mb-1.5">
+              <label className="block text-xs font-bold text-[#0B353D] mb-1.5">
                 Date of Birth (18+)
               </label>
               <input
@@ -127,20 +128,20 @@ export default function OnboardingPage() {
                   setDob(e.target.value);
                   if (validateAge(e.target.value)) setAgeError('');
                 }}
-                className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-[#EDE8DE] bg-[#FAF8F4]/50 focus:outline-none focus:border-[#2A5C46]"
+                className="w-full text-xs px-3.5 py-2.5 rounded-xl border-2 border-[#DDEEF1] bg-[#FDFBF7] text-[#0B353D] focus:outline-none focus:border-[#32C6B2]"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-[#10271D] mb-1.5">
-                Regional Community
+              <label className="block text-xs font-bold text-[#0B353D] mb-1.5">
+                Regional Heritage
               </label>
               <select
                 value={region}
                 onChange={(e) => setRegion(e.target.value)}
-                className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-[#EDE8DE] bg-white text-[#4A5E53] focus:outline-none focus:border-[#2A5C46]"
+                className="w-full text-xs px-3.5 py-2.5 rounded-xl border-2 border-[#DDEEF1] bg-white text-[#0B353D] focus:outline-none focus:border-[#32C6B2]"
               >
                 {REGIONS.map((r) => (
                   <option key={r.id} value={r.id}>{r.label}</option>
@@ -149,13 +150,13 @@ export default function OnboardingPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#10271D] mb-1.5">
+              <label className="block text-xs font-bold text-[#0B353D] mb-1.5">
                 Status in Dubai
               </label>
               <select
                 value={userStatus}
                 onChange={(e) => setUserStatus(e.target.value)}
-                className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-[#EDE8DE] bg-white text-[#4A5E53] focus:outline-none focus:border-[#2A5C46]"
+                className="w-full text-xs px-3.5 py-2.5 rounded-xl border-2 border-[#DDEEF1] bg-white text-[#0B353D] focus:outline-none focus:border-[#32C6B2]"
               >
                 {USER_STATUS_OPTIONS.map((st) => (
                   <option key={st.id} value={st.id}>{st.label}</option>
@@ -166,26 +167,26 @@ export default function OnboardingPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-[#10271D] mb-1.5">
-                Major / Field / Profession
+              <label className="block text-xs font-bold text-[#0B353D] mb-1.5">
+                Major / Profession
               </label>
               <input
                 type="text"
                 value={fieldOfStudy}
                 onChange={(e) => setFieldOfStudy(e.target.value)}
                 placeholder="e.g. AI & Robotics, Business, Design"
-                className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-[#EDE8DE] bg-[#FAF8F4]/50 focus:outline-none focus:border-[#2A5C46]"
+                className="w-full text-xs px-3.5 py-2.5 rounded-xl border-2 border-[#DDEEF1] bg-[#FDFBF7] text-[#0B353D] focus:outline-none focus:border-[#32C6B2]"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#10271D] mb-1.5">
-                Dubai Neighborhood
+              <label className="block text-xs font-bold text-[#0B353D] mb-1.5">
+                Dubai District
               </label>
               <select
                 value={dubaiArea}
                 onChange={(e) => setDubaiArea(e.target.value)}
-                className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-[#EDE8DE] bg-white text-[#4A5E53] focus:outline-none focus:border-[#2A5C46]"
+                className="w-full text-xs px-3.5 py-2.5 rounded-xl border-2 border-[#DDEEF1] bg-white text-[#0B353D] focus:outline-none focus:border-[#32C6B2]"
               >
                 {DUBAI_AREAS.map((area) => (
                   <option key={area} value={area}>{area}</option>
@@ -195,7 +196,7 @@ export default function OnboardingPage() {
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-[#10271D] mb-1.5">
+            <label className="block text-xs font-bold text-[#0B353D] mb-1.5">
               Short Bio
             </label>
             <textarea
@@ -203,13 +204,13 @@ export default function OnboardingPage() {
               value={bio}
               onChange={(e) => setBio(e.target.value)}
               placeholder="Tell others what brings you to Dubai and what you like to work on..."
-              className="w-full text-xs p-3.5 rounded-xl border border-[#EDE8DE] bg-[#FAF8F4]/50 focus:outline-none focus:border-[#2A5C46]"
+              className="w-full text-xs p-3.5 rounded-xl border-2 border-[#DDEEF1] bg-[#FDFBF7] text-[#0B353D] focus:outline-none focus:border-[#32C6B2]"
             />
           </div>
 
           {/* Interests */}
           <div className="space-y-2">
-            <label className="block text-xs font-semibold text-[#10271D]">
+            <label className="block text-xs font-bold text-[#0B353D]">
               Interests & Focus Areas
             </label>
             <div className="flex flex-wrap gap-1.5">
@@ -220,10 +221,10 @@ export default function OnboardingPage() {
                     key={item.id}
                     type="button"
                     onClick={() => handleInterestToggle(item.id)}
-                    className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
+                    className={`text-xs font-bold px-3 py-1.5 rounded-full border-2 transition-all ${
                       isSelected
-                        ? 'bg-[#1F4735] text-white border-[#1F4735]'
-                        : 'bg-[#FAF8F4] text-[#4A5E53] border-[#EDE8DE] hover:bg-[#F5F2EB]'
+                        ? 'bg-[#0B353D] text-white border-[#0B353D]'
+                        : 'bg-[#FDFBF7] text-[#1B6370] border-[#DDEEF1] hover:border-[#32C6B2]'
                     }`}
                   >
                     {item.name}
@@ -234,14 +235,14 @@ export default function OnboardingPage() {
           </div>
 
           {/* Save Button */}
-          <div className="pt-4 border-t border-[#EDE8DE] flex items-center justify-between">
-            <Link href="/" className="text-xs text-[#708077] hover:text-[#10271D]">
+          <div className="pt-4 border-t-2 border-[#DDEEF1] flex items-center justify-between">
+            <Link href="/" className="text-xs font-bold text-[#1B6370] hover:text-[#0B353D]">
               Cancel
             </Link>
 
             <button
               type="submit"
-              className="inline-flex items-center space-x-2 bg-[#1F4735] hover:bg-[#16382B] text-white text-xs font-medium px-6 py-2.5 rounded-full transition-all shadow-xs"
+              className="inline-flex items-center space-x-2 bg-[#FF573F] hover:bg-[#E4432C] text-white text-xs font-bold px-6 py-2.5 rounded-full transition-all shadow-md shadow-[#FF573F]/25 hover:scale-105"
             >
               <span>Save & Continue</span>
               <ArrowRight className="w-3.5 h-3.5" />
