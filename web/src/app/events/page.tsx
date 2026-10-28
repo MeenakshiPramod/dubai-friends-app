@@ -7,11 +7,10 @@ import {
   Calendar, 
   Users, 
   Briefcase, 
-  Sparkles, 
   Check, 
-  ExternalLink,
   MessageCircle,
-  Plus
+  Plus,
+  ArrowRight
 } from 'lucide-react';
 import { MOCK_EVENTS } from '@/lib/mockData';
 import { EVENT_CATEGORIES } from '@dubai-friends/shared';
@@ -36,244 +35,237 @@ export default function EventsPage() {
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 text-left">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-6">
-        <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 text-xs font-bold mb-2">
-            <MapPin className="w-3.5 h-3.5" />
-            <span>Dubai Interactive Event Map & Job Fairs</span>
+    <div className="bg-[#FAF8F4] min-h-screen text-[#172520] pb-24">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8 pt-12 space-y-10">
+        
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-[#EDE8DE] pb-8">
+          <div className="space-y-2">
+            <span className="text-xs font-sans text-[#708077] tracking-wider uppercase font-medium">
+              Community Calendar & Map
+            </span>
+            <h1 className="font-serif text-4xl sm:text-5xl text-[#10271D]">
+              Gatherings & Job Fairs
+            </h1>
+            <p className="text-sm text-[#52665E] max-w-xl font-sans">
+              Discover career expos and community meetups across Dubai. RSVP and coordinate travel so you can attend with peers.
+            </p>
           </div>
-          <h1 className="text-3xl font-extrabold text-slate-900">Events & Job Fairs</h1>
-          <p className="text-sm text-slate-500">
-            Find where students and job seekers are gathering in Dubai. RSVP and attend together in a group!
-          </p>
+
+          <Link
+            href="/org"
+            className="inline-flex items-center space-x-2 bg-[#1F4735] hover:bg-[#16382B] text-white text-xs font-medium px-5 py-2.5 rounded-full transition-all self-start sm:self-auto shadow-xs"
+          >
+            <Plus className="w-4 h-4" />
+            <span>Host an Event</span>
+          </Link>
         </div>
 
-        <Link
-          href="/org"
-          className="inline-flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-xl shadow-md shadow-indigo-600/20 text-sm transition-all"
-        >
-          <Plus className="w-4 h-4" />
-          <span>Post an Event / Job Fair</span>
-        </Link>
-      </div>
-
-      {/* Category Pills */}
-      <div className="flex flex-wrap gap-2">
-        <button
-          onClick={() => setSelectedCategory('all')}
-          className={`text-xs font-bold px-3 py-1.5 rounded-full border transition-colors ${
-            selectedCategory === 'all'
-              ? 'bg-slate-900 text-white border-slate-900'
-              : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-100'
-          }`}
-        >
-          All Events ({MOCK_EVENTS.length})
-        </button>
-
-        <button
-          onClick={() => setSelectedCategory('job_fair')}
-          className={`text-xs font-bold px-3 py-1.5 rounded-full border transition-colors flex items-center gap-1.5 ${
-            selectedCategory === 'job_fair'
-              ? 'bg-emerald-600 text-white border-emerald-600 shadow-sm'
-              : 'bg-emerald-50 text-emerald-800 border-emerald-200 hover:bg-emerald-100'
-          }`}
-        >
-          <Briefcase className="w-3.5 h-3.5" />
-          <span>💼 Job Fairs & Career Expos</span>
-        </button>
-
-        {EVENT_CATEGORIES.filter(c => c.id !== 'job_fair').map((cat) => (
+        {/* Category Pills */}
+        <div className="flex flex-wrap gap-2">
           <button
-            key={cat.id}
-            onClick={() => setSelectedCategory(cat.id)}
-            className={`text-xs font-bold px-3 py-1.5 rounded-full border transition-colors ${
-              selectedCategory === cat.id
-                ? 'bg-indigo-600 text-white border-indigo-600'
-                : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-100'
+            onClick={() => setSelectedCategory('all')}
+            className={`text-xs px-3.5 py-1.5 rounded-full border transition-all ${
+              selectedCategory === 'all'
+                ? 'bg-[#1F4735] text-white border-[#1F4735]'
+                : 'bg-white text-[#4A5E53] border-[#EDE8DE] hover:bg-[#F5F2EB]'
             }`}
           >
-            {cat.label}
+            All Events ({MOCK_EVENTS.length})
           </button>
-        ))}
-      </div>
 
-      {/* Interactive Map & Events Showcase Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left Column: Interactive Map Representation */}
-        <div className="lg:col-span-7 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
-          <div className="p-4 bg-slate-900 text-white flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <MapPin className="w-4 h-4 text-amber-400" />
-              <span className="text-xs font-bold uppercase tracking-wider">Dubai Interactive Map</span>
-            </div>
-            <span className="text-[11px] text-slate-400 font-mono">25.2048° N, 55.2708° E</span>
-          </div>
+          <button
+            onClick={() => setSelectedCategory('job_fair')}
+            className={`text-xs px-3.5 py-1.5 rounded-full border transition-all ${
+              selectedCategory === 'job_fair'
+                ? 'bg-[#D96B47] text-white border-[#D96B47]'
+                : 'bg-[#FDF6F3] text-[#D96B47] border-[#F4D2C5] hover:bg-[#FAE8E2]'
+            }`}
+          >
+            💼 Career Expos & Job Fairs
+          </button>
 
-          {/* Stylized Vector Map of Dubai Areas */}
-          <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 p-6 min-h-[420px] flex flex-col justify-between overflow-hidden">
-            {/* Background Map Grid & Coastline Simulation */}
-            <div className="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:16px_16px]" />
-            <div className="absolute top-0 right-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-
-            {/* Area labels */}
-            <div className="text-[11px] font-bold text-slate-500 flex justify-between z-10 select-none">
-              <span>ARABIAN GULF 🌊</span>
-              <span>DEIRA / AIRPORT ✈️</span>
-            </div>
-
-            {/* Pins positioned geographically across Dubai */}
-            <div className="relative z-10 my-8 space-y-6">
-              {filteredEvents.map((ev, index) => {
-                const isSelected = activeEvent?.id === ev.id;
-                const isAttending = rsvpdEventIds.includes(ev.id);
-
-                return (
-                  <div
-                    key={ev.id}
-                    onClick={() => setActiveEvent(ev)}
-                    className={`cursor-pointer transition-all p-3 rounded-xl border backdrop-blur-md flex items-center justify-between gap-3 ${
-                      isSelected
-                        ? 'bg-amber-500/20 border-amber-400 text-white shadow-lg shadow-amber-500/20 scale-[1.02]'
-                        : 'bg-white/10 border-white/15 text-slate-200 hover:bg-white/15'
-                    }`}
-                  >
-                    <div className="flex items-center space-x-3">
-                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm ${
-                        ev.is_job_event ? 'bg-emerald-500 text-white' : 'bg-amber-500 text-slate-950'
-                      }`}>
-                        {ev.is_job_event ? '💼' : '📍'}
-                      </div>
-                      <div>
-                        <div className="font-extrabold text-sm">{ev.title}</div>
-                        <div className="text-xs text-slate-400 flex items-center gap-1.5">
-                          <span>{ev.venue_name}</span>
-                          <span>•</span>
-                          <span className="text-amber-400 font-semibold">{ev.dubai_area}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="text-right flex-shrink-0">
-                      <span className="text-[11px] font-extrabold px-2 py-0.5 rounded-full bg-white/20 text-white">
-                        {ev.rsvp_count} going
-                      </span>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="flex items-center justify-between text-xs text-slate-400 pt-3 border-t border-white/10 z-10">
-              <span>💡 Tap any event pin to view hiring companies and group chats</span>
-              <span className="text-amber-400 font-semibold">Active: {activeEvent?.title}</span>
-            </div>
-          </div>
+          {EVENT_CATEGORIES.filter(c => c.id !== 'job_fair').map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setSelectedCategory(cat.id)}
+              className={`text-xs px-3.5 py-1.5 rounded-full border transition-all ${
+                selectedCategory === cat.id
+                  ? 'bg-[#1F4735] text-white border-[#1F4735]'
+                  : 'bg-white text-[#4A5E53] border-[#EDE8DE] hover:bg-[#F5F2EB]'
+              }`}
+            >
+              {cat.label}
+            </button>
+          ))}
         </div>
 
-        {/* Right Column: Selected Event Details & Group Attendance */}
-        {activeEvent && (
-          <div className="lg:col-span-5 bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-6">
-            <div className="relative rounded-xl overflow-hidden aspect-video bg-slate-100">
-              <img
-                src={activeEvent.cover_image_url}
-                alt={activeEvent.title}
-                className="w-full h-full object-cover"
-              />
-              {activeEvent.is_job_event && (
-                <div className="absolute top-3 left-3 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
-                  💼 Career / Job Fair
-                </div>
-              )}
+        {/* Map & Event Cards Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          {/* Left: Soft Parchment Dubai Interactive Map Representation */}
+          <div className="lg:col-span-7 bg-white rounded-3xl border border-[#EDE8DE] shadow-[0_2px_12px_rgba(23,54,40,0.02)] overflow-hidden">
+            <div className="p-4 bg-[#F5F2EB] border-b border-[#EDE8DE] flex items-center justify-between text-xs text-[#52665E]">
+              <div className="flex items-center space-x-2">
+                <MapPin className="w-4 h-4 text-[#D96B47]" />
+                <span className="font-serif text-sm font-semibold text-[#10271D]">Dubai Locations</span>
+              </div>
+              <span className="font-sans text-[11px] text-[#708077]">Interactive Map</span>
             </div>
 
-            <div>
-              <div className="text-xs font-bold text-amber-700 uppercase tracking-wide">
-                {activeEvent.dubai_area}
-              </div>
-              <h2 className="text-xl font-extrabold text-slate-900 mt-1">
-                {activeEvent.title}
-              </h2>
-              <p className="text-xs text-slate-500 mt-1">
-                Organized by: <span className="font-semibold text-slate-700">{activeEvent.organizer_name}</span>
-              </p>
-            </div>
-
-            {/* Time and Venue */}
-            <div className="space-y-2.5 text-xs text-slate-700 bg-slate-50 p-3.5 rounded-xl border border-slate-100">
-              <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-amber-600 flex-shrink-0" />
-                <span className="font-semibold">{new Date(activeEvent.starts_at).toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-amber-600 flex-shrink-0" />
-                <span>{activeEvent.venue_name}, {activeEvent.venue_address}</span>
-              </div>
-            </div>
-
-            {/* Job Fair Companies If Applicable */}
-            {activeEvent.participating_companies && (
-              <div className="space-y-2">
-                <h4 className="text-xs font-extrabold text-slate-800 uppercase tracking-wider">
-                  🏢 Participating Companies & Hiring Teams:
-                </h4>
-                <div className="flex flex-wrap gap-1.5">
-                  {activeEvent.participating_companies.map((comp: string) => (
-                    <span key={comp} className="text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-1 rounded-lg">
-                      {comp}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Description */}
-            <p className="text-xs text-slate-600 leading-relaxed">
-              {activeEvent.description}
-            </p>
-
-            {/* RSVP & Group Attend actions */}
-            <div className="pt-4 border-t border-slate-200 space-y-3">
-              <div className="flex items-center justify-between text-xs">
-                <span className="font-bold text-slate-700 flex items-center gap-1.5">
-                  <Users className="w-4 h-4 text-amber-600" />
-                  <span>{activeEvent.rsvp_count} people RSVP'd</span>
-                </span>
-                <span className="text-emerald-600 font-bold">Free Entry</span>
+            {/* Clean, botanical canvas */}
+            <div className="p-6 bg-[#FAF8F4] space-y-4">
+              <div className="text-[11px] font-sans text-[#708077] uppercase tracking-wider flex justify-between border-b border-[#EDE8DE] pb-2">
+                <span>Downtown / Marina / Academic City</span>
+                <span>Tap pin to view details</span>
               </div>
 
-              <div className="flex gap-2">
-                <button
-                  onClick={() => handleToggleRSVP(activeEvent.id)}
-                  className={`flex-1 flex items-center justify-center space-x-1.5 text-xs font-bold py-3 px-4 rounded-xl transition-all ${
-                    rsvpdEventIds.includes(activeEvent.id)
-                      ? 'bg-emerald-600 text-white shadow-sm'
-                      : 'bg-amber-600 hover:bg-amber-700 text-white shadow-md shadow-amber-600/20'
-                  }`}
-                >
-                  {rsvpdEventIds.includes(activeEvent.id) ? (
-                    <>
-                      <Check className="w-4 h-4" />
-                      <span>RSVP Confirmed (Going)</span>
-                    </>
-                  ) : (
-                    <span>RSVP / I'm Attending</span>
-                  )}
-                </button>
+              <div className="space-y-3 pt-2">
+                {filteredEvents.map((ev) => {
+                  const isSelected = activeEvent?.id === ev.id;
+                  const isAttending = rsvpdEventIds.includes(ev.id);
 
-                <Link
-                  href="/chat"
-                  className="inline-flex items-center space-x-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-3 py-3 rounded-xl transition-colors"
-                  title="Join Event Group Chat"
-                >
-                  <MessageCircle className="w-4 h-4 text-amber-400" />
-                  <span className="hidden sm:inline">Event Group</span>
-                </Link>
+                  return (
+                    <div
+                      key={ev.id}
+                      onClick={() => setActiveEvent(ev)}
+                      className={`cursor-pointer transition-all p-4 rounded-2xl border flex items-center justify-between gap-4 ${
+                        isSelected
+                          ? 'bg-white border-[#1F4735] shadow-[0_4px_16px_rgba(31,71,53,0.08)]'
+                          : 'bg-white/70 border-[#EDE8DE] hover:border-[#CBDCD1]'
+                      }`}
+                    >
+                      <div className="flex items-center space-x-3.5">
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-serif text-sm font-bold ${
+                          ev.is_job_event 
+                            ? 'bg-[#FDF6F3] text-[#D96B47]' 
+                            : 'bg-[#E8F1EC] text-[#1F4735]'
+                        }`}>
+                          {ev.is_job_event ? '💼' : '📍'}
+                        </div>
+                        <div>
+                          <h4 className="font-serif text-base text-[#10271D] leading-snug">
+                            {ev.title}
+                          </h4>
+                          <p className="text-xs text-[#708077] flex items-center gap-1.5 mt-0.5">
+                            <span>{ev.venue_name}</span>
+                            <span>•</span>
+                            <span className="text-[#2A5C46] font-medium">{ev.dubai_area}</span>
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="text-right flex-shrink-0">
+                        <span className="text-xs font-sans text-[#708077]">
+                          {ev.rsvp_count} going
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
-        )}
+
+          {/* Right: Selected Event Details */}
+          {activeEvent && (
+            <div className="lg:col-span-5 bg-white rounded-3xl border border-[#EDE8DE] shadow-[0_2px_12px_rgba(23,54,40,0.02)] p-6 space-y-6">
+              <div className="rounded-2xl overflow-hidden aspect-video bg-[#F5F2EB]">
+                <img
+                  src={activeEvent.cover_image_url}
+                  alt={activeEvent.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <span className="text-[11px] font-sans text-[#D96B47] uppercase tracking-wider font-semibold">
+                  {activeEvent.dubai_area}
+                </span>
+                <h2 className="font-serif text-2xl text-[#10271D]">
+                  {activeEvent.title}
+                </h2>
+                <p className="text-xs text-[#708077]">
+                  Hosted by <strong className="text-[#10271D]">{activeEvent.organizer_name}</strong>
+                </p>
+              </div>
+
+              {/* Timing & Venue */}
+              <div className="space-y-2 text-xs text-[#52665E] bg-[#FAF8F4] p-4 rounded-2xl border border-[#EDE8DE]">
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4 text-[#1F4735] flex-shrink-0" />
+                  <span>{new Date(activeEvent.starts_at).toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-[#D96B47] flex-shrink-0" />
+                  <span>{activeEvent.venue_name}, {activeEvent.venue_address}</span>
+                </div>
+              </div>
+
+              {/* Companies if job fair */}
+              {activeEvent.participating_companies && (
+                <div className="space-y-2">
+                  <span className="text-[11px] font-sans text-[#708077] uppercase tracking-wider block">
+                    Participating Teams & Recruiters:
+                  </span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {activeEvent.participating_companies.map((c: string) => (
+                      <span key={c} className="text-xs bg-[#E8F1EC] text-[#1F4735] px-2.5 py-1 rounded-lg">
+                        {c}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Description */}
+              <p className="text-xs text-[#52665E] leading-relaxed">
+                {activeEvent.description}
+              </p>
+
+              {/* Actions */}
+              <div className="pt-4 border-t border-[#EDE8DE] space-y-3">
+                <div className="flex items-center justify-between text-xs text-[#708077]">
+                  <span className="flex items-center gap-1.5">
+                    <Users className="w-4 h-4 text-[#1F4735]" />
+                    <span>{activeEvent.rsvp_count} community members going</span>
+                  </span>
+                  <span className="text-[#2A5C46] font-medium">Free Entrance</span>
+                </div>
+
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => handleToggleRSVP(activeEvent.id)}
+                    className={`flex-1 text-xs font-semibold py-3 px-4 rounded-full transition-all flex items-center justify-center space-x-1.5 ${
+                      rsvpdEventIds.includes(activeEvent.id)
+                        ? 'bg-[#E8F1EC] text-[#1F4735] border border-[#D5E4DB]'
+                        : 'bg-[#1F4735] hover:bg-[#16382B] text-white shadow-xs'
+                    }`}
+                  >
+                    {rsvpdEventIds.includes(activeEvent.id) ? (
+                      <>
+                        <Check className="w-4 h-4 text-[#1F4735]" />
+                        <span>RSVP Confirmed (Going)</span>
+                      </>
+                    ) : (
+                      <span>RSVP to Attend</span>
+                    )}
+                  </button>
+
+                  <Link
+                    href="/chat"
+                    className="bg-[#FAF8F4] hover:bg-[#F5F2EB] text-[#1F4735] text-xs font-medium px-4 py-3 rounded-full border border-[#EDE8DE] transition-colors flex items-center space-x-1.5"
+                    title="Join Event Group Discussion"
+                  >
+                    <MessageCircle className="w-4 h-4 text-[#D96B47]" />
+                    <span>Group Chat</span>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
+
+        </div>
       </div>
     </div>
   );

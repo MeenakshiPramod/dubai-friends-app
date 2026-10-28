@@ -4,10 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { 
-  Sparkles, 
   ShieldCheck, 
-  MapPin, 
-  GraduationCap, 
   AlertCircle, 
   CheckCircle2,
   ArrowRight
@@ -29,7 +26,6 @@ export default function OnboardingPage() {
   const [ageError, setAgeError] = useState('');
   const [isSaved, setIsSaved] = useState(false);
 
-  // Validate 18+
   const validateAge = (dateStr: string) => {
     if (!dateStr) return false;
     const birthDate = new Date(dateStr);
@@ -53,7 +49,7 @@ export default function OnboardingPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateAge(dob)) {
-      setAgeError('Strict Safety Rule: Dubai Friends is an 18+ community platform. You must be at least 18 years old.');
+      setAgeError('Community Safety: Dubai Friends requires members to be at least 18 years of age.');
       return;
     }
     setAgeError('');
@@ -64,59 +60,64 @@ export default function OnboardingPage() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-left">
-      <div className="bg-white rounded-3xl border border-slate-200 shadow-md p-6 sm:p-10 space-y-8">
-        <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold mb-2">
-            <ShieldCheck className="w-3.5 h-3.5 text-amber-600" />
-            <span>18+ Verified Member Setup</span>
+    <div className="bg-[#FAF8F4] min-h-screen text-[#172520] pb-24">
+      <div className="max-w-2xl mx-auto px-6 lg:px-8 pt-12 space-y-8">
+        
+        {/* Header */}
+        <div className="space-y-2 border-b border-[#EDE8DE] pb-6">
+          <div className="inline-flex items-center space-x-1.5 text-xs text-[#1F4735] font-medium bg-[#E8F1EC] px-3 py-1 rounded-full">
+            <ShieldCheck className="w-3.5 h-3.5" />
+            <span>18+ Community Member Profile</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900">Your Dubai Community Profile</h1>
-          <p className="text-xs sm:text-sm text-slate-500 mt-1">
-            Fill in your cultural roots, student/career status, and interests so fellow Dubai friends can discover you.
+          <h1 className="font-serif text-3xl sm:text-4xl text-[#10271D]">
+            Set up your profile
+          </h1>
+          <p className="text-xs sm:text-sm text-[#52665E]">
+            Share your roots, major, and Dubai neighborhood so peers can discover you naturally.
           </p>
         </div>
 
         {ageError && (
-          <div className="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-start gap-2">
-            <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+          <div className="p-4 rounded-2xl bg-[#FDF6F3] border border-[#F4D2C5] text-[#A44224] text-xs flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 flex-shrink-0" />
             <span>{ageError}</span>
           </div>
         )}
 
         {isSaved && (
-          <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-            <span>Profile successfully updated! Redirecting to Discover Friends...</span>
+          <div className="p-4 rounded-2xl bg-[#E8F1EC] border border-[#D5E4DB] text-[#1F4735] text-xs flex items-center gap-2">
+            <CheckCircle2 className="w-4 h-4 text-[#2A5C46]" />
+            <span>Profile updated successfully! Redirecting to Discover...</span>
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Name & DOB (18+ rule) */}
+        {/* Form Container */}
+        <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-6 sm:p-8 border border-[#EDE8DE] shadow-[0_2px_12px_rgba(23,54,40,0.02)] space-y-6">
+          
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">First Name</label>
+              <label className="block text-xs font-semibold text-[#10271D] mb-1.5">First Name</label>
               <input
                 type="text"
                 required
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-500/30"
+                className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-[#EDE8DE] bg-[#FAF8F4]/50 focus:outline-none focus:border-[#2A5C46]"
               />
             </div>
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">Last Name</label>
+              <label className="block text-xs font-semibold text-[#10271D] mb-1.5">Last Name</label>
               <input
                 type="text"
                 required
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-500/30"
+                className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-[#EDE8DE] bg-[#FAF8F4]/50 focus:outline-none focus:border-[#2A5C46]"
               />
             </div>
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                Date of Birth (18+ Mandatory)
+              <label className="block text-xs font-semibold text-[#10271D] mb-1.5">
+                Date of Birth (18+)
               </label>
               <input
                 type="date"
@@ -126,37 +127,35 @@ export default function OnboardingPage() {
                   setDob(e.target.value);
                   if (validateAge(e.target.value)) setAgeError('');
                 }}
-                className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-500/30"
+                className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-[#EDE8DE] bg-[#FAF8F4]/50 focus:outline-none focus:border-[#2A5C46]"
               />
             </div>
           </div>
 
-          {/* Region / Cultural Background & Status */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                Regional / Cultural Community
+              <label className="block text-xs font-semibold text-[#10271D] mb-1.5">
+                Regional Community
               </label>
               <select
                 value={region}
                 onChange={(e) => setRegion(e.target.value)}
-                className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500/30"
+                className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-[#EDE8DE] bg-white text-[#4A5E53] focus:outline-none focus:border-[#2A5C46]"
               >
                 {REGIONS.map((r) => (
                   <option key={r.id} value={r.id}>{r.label}</option>
                 ))}
               </select>
-              <p className="text-[11px] text-slate-400 mt-1">Helps match you with Malayalis or your home regional peers</p>
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                Current Role in Dubai
+              <label className="block text-xs font-semibold text-[#10271D] mb-1.5">
+                Status in Dubai
               </label>
               <select
                 value={userStatus}
                 onChange={(e) => setUserStatus(e.target.value)}
-                className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500/30"
+                className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-[#EDE8DE] bg-white text-[#4A5E53] focus:outline-none focus:border-[#2A5C46]"
               >
                 {USER_STATUS_OPTIONS.map((st) => (
                   <option key={st.id} value={st.id}>{st.label}</option>
@@ -165,29 +164,28 @@ export default function OnboardingPage() {
             </div>
           </div>
 
-          {/* Field of Study / Occupation & Dubai Neighborhood */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                Field of Study / Major / Profession
+              <label className="block text-xs font-semibold text-[#10271D] mb-1.5">
+                Major / Field / Profession
               </label>
               <input
                 type="text"
                 value={fieldOfStudy}
                 onChange={(e) => setFieldOfStudy(e.target.value)}
-                placeholder="e.g. AI & Robotics, BBA, Software Engineer"
-                className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-500/30"
+                placeholder="e.g. AI & Robotics, Business, Design"
+                className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-[#EDE8DE] bg-[#FAF8F4]/50 focus:outline-none focus:border-[#2A5C46]"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">
+              <label className="block text-xs font-semibold text-[#10271D] mb-1.5">
                 Dubai Neighborhood
               </label>
               <select
                 value={dubaiArea}
                 onChange={(e) => setDubaiArea(e.target.value)}
-                className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500/30"
+                className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-[#EDE8DE] bg-white text-[#4A5E53] focus:outline-none focus:border-[#2A5C46]"
               >
                 {DUBAI_AREAS.map((area) => (
                   <option key={area} value={area}>{area}</option>
@@ -196,26 +194,25 @@ export default function OnboardingPage() {
             </div>
           </div>
 
-          {/* Bio */}
           <div>
-            <label className="block text-xs font-bold text-slate-700 mb-1.5">
-              Short Bio / About You
+            <label className="block text-xs font-semibold text-[#10271D] mb-1.5">
+              Short Bio
             </label>
             <textarea
               rows={3}
               value={bio}
               onChange={(e) => setBio(e.target.value)}
-              placeholder="Tell other students and newcomers about yourself, your hobbies & what you look forward to in Dubai..."
-              className="w-full text-xs p-3.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-500/30"
+              placeholder="Tell others what brings you to Dubai and what you like to work on..."
+              className="w-full text-xs p-3.5 rounded-xl border border-[#EDE8DE] bg-[#FAF8F4]/50 focus:outline-none focus:border-[#2A5C46]"
             />
           </div>
 
-          {/* Interests Tags */}
+          {/* Interests */}
           <div className="space-y-2">
-            <label className="block text-xs font-bold text-slate-700">
-              Select Your Interests (For Smart Matching)
+            <label className="block text-xs font-semibold text-[#10271D]">
+              Interests & Focus Areas
             </label>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5">
               {INTEREST_ITEMS.map((item) => {
                 const isSelected = selectedInterests.includes(item.id);
                 return (
@@ -223,10 +220,10 @@ export default function OnboardingPage() {
                     key={item.id}
                     type="button"
                     onClick={() => handleInterestToggle(item.id)}
-                    className={`text-xs font-semibold px-3 py-1.5 rounded-xl border transition-all ${
+                    className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
                       isSelected
-                        ? 'bg-amber-600 text-white border-amber-600 shadow-sm'
-                        : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                        ? 'bg-[#1F4735] text-white border-[#1F4735]'
+                        : 'bg-[#FAF8F4] text-[#4A5E53] border-[#EDE8DE] hover:bg-[#F5F2EB]'
                     }`}
                   >
                     {item.name}
@@ -236,21 +233,23 @@ export default function OnboardingPage() {
             </div>
           </div>
 
-          {/* Submit CTA */}
-          <div className="pt-4 border-t border-slate-200 flex items-center justify-between">
-            <Link href="/" className="text-xs font-bold text-slate-500 hover:text-slate-800">
+          {/* Save Button */}
+          <div className="pt-4 border-t border-[#EDE8DE] flex items-center justify-between">
+            <Link href="/" className="text-xs text-[#708077] hover:text-[#10271D]">
               Cancel
             </Link>
 
             <button
               type="submit"
-              className="inline-flex items-center space-x-2 bg-amber-600 hover:bg-amber-700 text-white font-bold px-6 py-3 rounded-xl shadow-md shadow-amber-600/25 transition-transform active:scale-95 text-xs"
+              className="inline-flex items-center space-x-2 bg-[#1F4735] hover:bg-[#16382B] text-white text-xs font-medium px-6 py-2.5 rounded-full transition-all shadow-xs"
             >
               <span>Save & Continue</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
+
         </form>
+
       </div>
     </div>
   );

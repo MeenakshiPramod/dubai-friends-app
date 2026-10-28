@@ -2,17 +2,14 @@
 
 import { useState } from 'react';
 import { 
-  Sparkles, 
   X, 
   Copy, 
   Check, 
   Send, 
-  ArrowRight, 
-  Users, 
-  ShieldCheck, 
+  Share2, 
   Briefcase,
-  Flame,
-  MessageSquare
+  Calendar,
+  Sparkles
 } from 'lucide-react';
 import { UserProfile } from '@dubai-friends/shared';
 import { MOCK_CURRENT_USER } from '@/lib/mockData';
@@ -43,7 +40,7 @@ export default function WarmIntroModal({
   const handleCopy = () => {
     navigator.clipboard.writeText(draft.message);
     setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   const handleSend = () => {
@@ -54,209 +51,140 @@ export default function WarmIntroModal({
     setTimeout(() => {
       setSentSuccess(false);
       onClose();
-    }, 1500);
+    }, 1200);
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#10271D]/40 backdrop-blur-xs animate-in fade-in duration-200">
       <div 
-        className="bg-white rounded-3xl max-w-2xl w-full border border-slate-200/90 shadow-2xl overflow-hidden flex flex-col max-h-[90vh] text-left"
+        className="bg-[#FAF8F4] rounded-3xl max-w-xl w-full border border-[#EDE8DE] shadow-[0_20px_50px_rgba(23,54,40,0.12)] overflow-hidden flex flex-col max-h-[90vh] text-left"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Modal Top Header with YC style gradient */}
-        <div className="p-6 bg-gradient-to-r from-amber-500/10 via-indigo-500/5 to-transparent border-b border-slate-200/80 flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-600 to-amber-400 flex items-center justify-center text-white shadow-md shadow-amber-500/20">
-              <Sparkles className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <h3 className="text-lg font-extrabold text-slate-900">
-                  AI Warm Intro Generator
-                </h3>
-                <span className="text-[10px] font-extrabold uppercase tracking-wide bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full">
-                  Happenstance Graph
-                </span>
-              </div>
-              <p className="text-xs text-slate-500">
-                Replace cold outreach with verified mutual bridges in Dubai
-              </p>
-            </div>
+        {/* Header */}
+        <div className="p-6 bg-white border-b border-[#EDE8DE] flex items-center justify-between">
+          <div>
+            <span className="text-[11px] font-sans text-[#708077] uppercase tracking-wider font-medium">
+              Warm Intro Path
+            </span>
+            <h3 className="font-serif text-2xl text-[#10271D]">
+              Introduction Draft
+            </h3>
           </div>
 
           <button
             onClick={onClose}
-            className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+            className="p-2 rounded-full text-[#708077] hover:text-[#10271D] hover:bg-[#F5F2EB] transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Body content */}
+        {/* Content Body */}
         <div className="p-6 overflow-y-auto space-y-6 flex-1">
-          {/* Visual Warm Bridge Graph */}
-          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2">
-            <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500 flex items-center justify-between">
-              <span>Warm Introduction Relationship Path</span>
-              <span className="text-emerald-600 font-extrabold">98% Warm Path Success</span>
-            </div>
-
-            <div className="flex items-center justify-between pt-2">
-              {/* You */}
-              <div className="flex items-center space-x-2">
-                <img
-                  src={MOCK_CURRENT_USER.avatar_url}
-                  alt="You"
-                  className="w-10 h-10 rounded-full object-cover ring-2 ring-amber-500/40"
-                />
-                <div className="text-left">
-                  <div className="text-xs font-bold text-slate-900">You (Meenakshi)</div>
-                  <div className="text-[10px] text-slate-500">Student • Dubai</div>
-                </div>
-              </div>
-
-              {/* Arrow + Bridge */}
-              <div className="flex-1 px-4 flex flex-col items-center">
-                <div className="w-full flex items-center">
-                  <div className="h-0.5 flex-1 bg-gradient-to-r from-amber-400 via-indigo-400 to-emerald-400" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-indigo-600 ring-4 ring-indigo-100 mx-1" />
-                  <div className="h-0.5 flex-1 bg-gradient-to-r from-indigo-400 to-emerald-400" />
-                </div>
-                <span className="text-[10px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-200 px-2 py-0.5 rounded-full mt-1.5 truncate max-w-[170px]">
-                  🤝 Via {bridgePerson}
-                </span>
-              </div>
-
-              {/* Target */}
-              <div className="flex items-center space-x-2">
-                <img
-                  src={targetUser.avatar_url}
-                  alt={targetUser.first_name}
-                  className="w-10 h-10 rounded-full object-cover ring-2 ring-emerald-500/40"
-                />
-                <div className="text-left">
-                  <div className="text-xs font-bold text-slate-900">
-                    {targetUser.first_name} {targetUser.last_name}
-                  </div>
-                  <div className="text-[10px] text-slate-500 truncate max-w-[120px]">
-                    {targetUser.company || targetUser.field_of_study}
-                  </div>
-                </div>
+          {/* Bridge Path */}
+          <div className="p-4 rounded-2xl bg-white border border-[#EDE8DE] flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <img
+                src={MOCK_CURRENT_USER.avatar_url}
+                alt="You"
+                className="w-9 h-9 rounded-full object-cover ring-1 ring-[#1F4735]/20"
+              />
+              <div className="text-xs">
+                <strong className="block text-[#10271D]">You</strong>
+                <span className="text-[#708077]">Meenakshi</span>
               </div>
             </div>
 
-            {targetUser.warm_intro_path && (
-              <p className="text-[11px] text-slate-600 italic bg-white p-2 rounded-xl border border-slate-100 mt-2">
-                💡 <span className="font-semibold text-slate-800">Connection Context:</span> {targetUser.warm_intro_path.note}
-              </p>
-            )}
+            <div className="flex flex-col items-center px-4">
+              <div className="text-[10px] text-[#2A5C46] font-semibold bg-[#E8F1EC] px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                <Share2 className="w-2.5 h-2.5" />
+                <span>Via {bridgePerson}</span>
+              </div>
+            </div>
+
+            <div className="flex items-center space-x-3">
+              <img
+                src={targetUser.avatar_url}
+                alt={targetUser.first_name}
+                className="w-9 h-9 rounded-full object-cover ring-1 ring-[#1F4735]/20"
+              />
+              <div className="text-xs text-right">
+                <strong className="block text-[#10271D]">{targetUser.first_name}</strong>
+                <span className="text-[#708077] truncate max-w-[100px] block">{targetUser.company || targetUser.dubai_area}</span>
+              </div>
+            </div>
           </div>
 
           {/* Tone Selector */}
           <div className="space-y-2">
-            <label className="text-xs font-extrabold text-slate-700 flex items-center justify-between">
-              <span>Select AI Tone for Introduction</span>
-              <span className="text-[11px] text-amber-600 font-semibold">Trained for UAE etiquette</span>
+            <label className="text-xs font-semibold text-[#10271D] block">
+              Choose Context:
             </label>
-
-            <div className="grid grid-cols-3 gap-2.5">
+            <div className="grid grid-cols-3 gap-2">
               <button
                 onClick={() => setTone('casual_malayali')}
                 className={`p-3 rounded-2xl border text-left transition-all ${
                   tone === 'casual_malayali'
-                    ? 'bg-amber-50/80 border-amber-500 ring-2 ring-amber-500/20 text-amber-950 font-bold'
-                    : 'bg-white border-slate-200 hover:bg-slate-50 text-slate-700'
+                    ? 'bg-[#E8F1EC] border-[#1F4735] text-[#1F4735] font-semibold'
+                    : 'bg-white border-[#EDE8DE] text-[#52665E] hover:bg-[#F5F2EB]'
                 }`}
               >
-                <div className="text-xs font-extrabold flex items-center gap-1.5">
-                  <span>🌴 Cultural Warmth</span>
-                </div>
-                <div className="text-[10px] text-slate-500 mt-0.5 font-normal">
-                  Malayali / Student community bonding
-                </div>
+                <div className="text-xs">🌴 Community</div>
+                <div className="text-[10px] text-[#708077] mt-0.5">Malayali & students</div>
               </button>
 
               <button
                 onClick={() => setTone('professional_referral')}
                 className={`p-3 rounded-2xl border text-left transition-all ${
                   tone === 'professional_referral'
-                    ? 'bg-emerald-50/80 border-emerald-500 ring-2 ring-emerald-500/20 text-emerald-950 font-bold'
-                    : 'bg-white border-slate-200 hover:bg-slate-50 text-slate-700'
+                    ? 'bg-[#E8F1EC] border-[#1F4735] text-[#1F4735] font-semibold'
+                    : 'bg-white border-[#EDE8DE] text-[#52665E] hover:bg-[#F5F2EB]'
                 }`}
               >
-                <div className="text-xs font-extrabold flex items-center gap-1.5">
-                  <Briefcase className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Job Referral</span>
-                </div>
-                <div className="text-[10px] text-slate-500 mt-0.5 font-normal">
-                  Careem / Dubai corporate opening
-                </div>
+                <div className="text-xs">💼 Career Referral</div>
+                <div className="text-[10px] text-[#708077] mt-0.5">Job recommendation</div>
               </button>
 
               <button
                 onClick={() => setTone('event_buddy')}
                 className={`p-3 rounded-2xl border text-left transition-all ${
                   tone === 'event_buddy'
-                    ? 'bg-indigo-50/80 border-indigo-500 ring-2 ring-indigo-500/20 text-indigo-950 font-bold'
-                    : 'bg-white border-slate-200 hover:bg-slate-50 text-slate-700'
+                    ? 'bg-[#E8F1EC] border-[#1F4735] text-[#1F4735] font-semibold'
+                    : 'bg-white border-[#EDE8DE] text-[#52665E] hover:bg-[#F5F2EB]'
                 }`}
               >
-                <div className="text-xs font-extrabold flex items-center gap-1.5">
-                  <Flame className="w-3.5 h-3.5 text-indigo-600" />
-                  <span>Event Buddy</span>
-                </div>
-                <div className="text-[10px] text-slate-500 mt-0.5 font-normal">
-                  GITEX Expo group meetup invite
-                </div>
+                <div className="text-xs">🎟️ Event Buddy</div>
+                <div className="text-[10px] text-[#708077] mt-0.5">GITEX meetup</div>
               </button>
             </div>
           </div>
 
-          {/* Generated AI Pitch Box */}
+          {/* Letter Preview */}
           <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-extrabold text-slate-800">
-                AI Drafted Introduction Pitch:
-              </span>
-              <span className="text-[11px] text-slate-400 font-mono">
-                {draft.message.length} chars
-              </span>
-            </div>
-
-            <div className="p-4 rounded-2xl bg-slate-900 text-slate-100 font-sans text-xs leading-relaxed border border-slate-800 whitespace-pre-line relative shadow-inner">
+            <span className="text-xs font-semibold text-[#10271D] block">
+              Personalized Draft:
+            </span>
+            <div className="p-4 rounded-2xl bg-white border border-[#EDE8DE] text-xs leading-relaxed text-[#172520] font-sans whitespace-pre-line shadow-xs">
               {draft.message}
-            </div>
-
-            {/* Key talking points */}
-            <div className="flex flex-wrap gap-2 pt-1">
-              {draft.keyTalkingPoints.map((point, idx) => (
-                <span
-                  key={idx}
-                  className="text-[10px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200/80 px-2.5 py-1 rounded-lg flex items-center gap-1"
-                >
-                  <ShieldCheck className="w-3 h-3 text-emerald-600 flex-shrink-0" />
-                  <span>{point}</span>
-                </span>
-              ))}
             </div>
           </div>
         </div>
 
-        {/* Modal Footer with Actions */}
-        <div className="p-5 bg-slate-50 border-t border-slate-200 flex items-center justify-between gap-3">
+        {/* Footer Actions */}
+        <div className="p-5 bg-white border-t border-[#EDE8DE] flex items-center justify-between gap-3">
           <button
             onClick={handleCopy}
-            className="inline-flex items-center space-x-1.5 text-xs font-bold text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-100 border border-slate-200 px-4 py-2.5 rounded-xl transition-all shadow-sm"
+            className="text-xs font-medium text-[#4A5E53] hover:text-[#10271D] bg-[#FAF8F4] hover:bg-[#F5F2EB] px-4 py-2.5 rounded-full border border-[#EDE8DE] transition-colors flex items-center space-x-1.5"
           >
             {copied ? (
               <>
-                <Check className="w-4 h-4 text-emerald-600" />
-                <span>Copied to Clipboard!</span>
+                <Check className="w-3.5 h-3.5 text-[#2A5C46]" />
+                <span>Copied!</span>
               </>
             ) : (
               <>
-                <Copy className="w-4 h-4" />
-                <span>Copy Draft</span>
+                <Copy className="w-3.5 h-3.5" />
+                <span>Copy text</span>
               </>
             )}
           </button>
@@ -264,17 +192,17 @@ export default function WarmIntroModal({
           <button
             onClick={handleSend}
             disabled={sentSuccess}
-            className="inline-flex items-center space-x-2 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-700 hover:to-amber-600 text-white font-extrabold text-xs px-6 py-2.5 rounded-xl shadow-lg shadow-amber-600/25 transition-transform active:scale-95 disabled:bg-emerald-600"
+            className="text-xs font-semibold bg-[#1F4735] hover:bg-[#16382B] text-white px-6 py-2.5 rounded-full transition-all flex items-center space-x-1.5 shadow-xs"
           >
             {sentSuccess ? (
               <>
-                <Check className="w-4 h-4" />
-                <span>Intro Sent via Chat!</span>
+                <Check className="w-3.5 h-3.5 text-[#D5E8DD]" />
+                <span>Sent to Chat!</span>
               </>
             ) : (
               <>
-                <Send className="w-4 h-4" />
-                <span>Send Warm Intro Message</span>
+                <Send className="w-3.5 h-3.5" />
+                <span>Send to Chat</span>
               </>
             )}
           </button>

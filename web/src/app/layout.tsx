@@ -1,14 +1,25 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Newsreader } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ 
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+});
+
+const newsreader = Newsreader({ 
+  subsets: ['latin'],
+  variable: '--font-serif',
+  display: 'swap',
+  style: ['normal', 'italic']
+});
 
 export const metadata: Metadata = {
-  title: 'Dubai Friends - Connect, Events & Jobs in Dubai',
-  description: 'Connect with students, job seekers, and communities like Malayalis, AI builders, and professionals in Dubai. Discover nearby events on map and career opportunities.',
+  title: 'Dubai Friends — Warm Introductions & Community in Dubai',
+  description: 'A serene, human-crafted community platform connecting students, creators, and professionals arriving in Dubai through shared cultural roots and mutual relationships.',
 };
 
 export default function RootLayout({
@@ -17,8 +28,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} min-h-screen flex flex-col bg-slate-50 text-slate-900`}>
+    <html lang="en" className={`${inter.variable} ${newsreader.variable}`}>
+      <body className="min-h-screen flex flex-col bg-[#FAF8F4] text-[#172520] font-sans antialiased selection:bg-[#E2ECE5] selection:text-[#173628]">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

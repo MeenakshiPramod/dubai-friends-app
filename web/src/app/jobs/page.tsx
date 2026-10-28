@@ -7,10 +7,8 @@ import {
   MapPin, 
   Building2, 
   ExternalLink, 
-  DollarSign, 
   Search, 
-  Sparkles,
-  Plus,
+  Plus, 
   ArrowRight
 } from 'lucide-react';
 import { MOCK_JOBS } from '@/lib/mockData';
@@ -35,141 +33,146 @@ export default function JobsPage() {
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 text-left">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-6">
-        <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold mb-2">
-            <Briefcase className="w-3.5 h-3.5" />
-            <span>Dubai Careers & LinkedIn Postings</span>
-          </div>
-          <h1 className="text-3xl font-extrabold text-slate-900">Dubai Job Board</h1>
-          <p className="text-sm text-slate-500">
-            Hand-picked opportunities for graduates, engineers, and career newcomers in Dubai. Apply directly on LinkedIn.
-          </p>
-        </div>
-
-        <Link
-          href="/org"
-          className="inline-flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2.5 rounded-xl shadow-md shadow-emerald-600/20 text-sm transition-all"
-        >
-          <Plus className="w-4 h-4" />
-          <span>Post a Job Listing</span>
-        </Link>
-      </div>
-
-      {/* Filter and Search Bar */}
-      <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm space-y-4">
-        <div className="grid grid-cols-1 sm:grid-cols-12 gap-3">
-          <div className="sm:col-span-6 relative">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search by role (e.g. AI, React, Sales, Finance)..."
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500"
-            />
+    <div className="bg-[#FAF8F4] min-h-screen text-[#172520] pb-24">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8 pt-12 space-y-10">
+        
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-[#EDE8DE] pb-8">
+          <div className="space-y-2">
+            <span className="text-xs font-sans text-[#708077] tracking-wider uppercase font-medium">
+              Verified Career Opportunities
+            </span>
+            <h1 className="font-serif text-4xl sm:text-5xl text-[#10271D]">
+              Opportunities in Dubai
+            </h1>
+            <p className="text-sm text-[#52665E] max-w-xl font-sans">
+              Hand-verified roles from tech teams and startups across Dubai. Request employee referrals or apply straight through verified LinkedIn listings.
+            </p>
           </div>
 
-          <div className="sm:col-span-3">
-            <select
-              value={selectedArea}
-              onChange={(e) => setSelectedArea(e.target.value)}
-              className="w-full py-2.5 px-3 rounded-xl border border-slate-200 text-sm bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
-            >
-              <option value="all">All Dubai Areas</option>
-              {DUBAI_AREAS.map((a) => (
-                <option key={a} value={a}>{a}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="sm:col-span-3">
-            <select
-              value={selectedType}
-              onChange={(e) => setSelectedType(e.target.value)}
-              className="w-full py-2.5 px-3 rounded-xl border border-slate-200 text-sm bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
-            >
-              <option value="all">All Job Types</option>
-              {JOB_TYPES.map((jt) => (
-                <option key={jt.id} value={jt.id}>{jt.label}</option>
-              ))}
-            </select>
-          </div>
-        </div>
-      </div>
-
-      {/* Job Postings List */}
-      <div className="space-y-4">
-        {filteredJobs.map((job) => (
-          <div
-            key={job.id}
-            className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:border-emerald-300 hover:shadow-md transition-all flex flex-col md:flex-row md:items-center justify-between gap-6"
+          <Link
+            href="/org"
+            className="inline-flex items-center space-x-2 bg-[#1F4735] hover:bg-[#16382B] text-white text-xs font-medium px-5 py-2.5 rounded-full transition-all self-start sm:self-auto shadow-xs"
           >
-            <div className="flex items-start space-x-4">
-              <img
-                src={job.company_logo}
-                alt={job.company_name}
-                className="w-14 h-14 rounded-xl object-cover ring-1 ring-slate-200 flex-shrink-0"
+            <Plus className="w-4 h-4" />
+            <span>Post a Role</span>
+          </Link>
+        </div>
+
+        {/* Filter and Search Bar */}
+        <div className="bg-white rounded-3xl p-4 sm:p-5 border border-[#EDE8DE] shadow-[0_2px_12px_rgba(23,54,40,0.02)] space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-12 gap-3">
+            <div className="sm:col-span-6 relative">
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#708077]" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search by role or company (e.g. AI, React, Sales)..."
+                className="w-full pl-10 pr-4 py-2.5 rounded-2xl border border-[#EDE8DE] text-sm focus:outline-none focus:border-[#2A5C46] bg-[#FAF8F4]/50"
               />
-              <div className="space-y-1.5">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-xs font-bold uppercase tracking-wider bg-emerald-50 text-emerald-800 px-2 py-0.5 rounded-md">
-                    {job.job_type.replace('_', ' ')}
-                  </span>
-                  <span className="text-xs text-slate-500 flex items-center gap-1 font-medium">
-                    <MapPin className="w-3 h-3 text-slate-400" />
-                    <span>{job.dubai_area}</span>
-                  </span>
-                </div>
+            </div>
 
-                <h3 className="text-lg font-extrabold text-slate-900 leading-tight">
-                  {job.title}
-                </h3>
-                <div className="text-xs font-semibold text-slate-600 flex items-center gap-1">
-                  <Building2 className="w-3.5 h-3.5 text-slate-400" />
-                  <span>{job.company_name}</span>
-                </div>
+            <div className="sm:col-span-3">
+              <select
+                value={selectedArea}
+                onChange={(e) => setSelectedArea(e.target.value)}
+                className="w-full py-2.5 px-3.5 rounded-2xl border border-[#EDE8DE] text-sm bg-white text-[#4A5E53] focus:outline-none"
+              >
+                <option value="all">All Dubai Areas</option>
+                {DUBAI_AREAS.map((a) => (
+                  <option key={a} value={a}>{a}</option>
+                ))}
+              </select>
+            </div>
 
-                <p className="text-xs text-slate-600 max-w-2xl leading-relaxed">
-                  {job.description}
-                </p>
+            <div className="sm:col-span-3">
+              <select
+                value={selectedType}
+                onChange={(e) => setSelectedType(e.target.value)}
+                className="w-full py-2.5 px-3.5 rounded-2xl border border-[#EDE8DE] text-sm bg-white text-[#4A5E53] focus:outline-none"
+              >
+                <option value="all">All Job Types</option>
+                {JOB_TYPES.map((jt) => (
+                  <option key={jt.id} value={jt.id}>{jt.label}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
 
-                {/* Skills tags */}
-                <div className="flex flex-wrap gap-1.5 pt-1">
-                  {job.required_skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="text-[11px] font-semibold bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md"
-                    >
-                      {skill}
+        {/* Job Cards */}
+        <div className="space-y-4">
+          {filteredJobs.map((job) => (
+            <div
+              key={job.id}
+              className="bg-white rounded-3xl p-6 sm:p-7 border border-[#EDE8DE] shadow-[0_2px_12px_rgba(23,54,40,0.02)] hover:border-[#C5D9CD] transition-all flex flex-col md:flex-row md:items-center justify-between gap-6"
+            >
+              <div className="flex items-start space-x-4">
+                <img
+                  src={job.company_logo}
+                  alt={job.company_name}
+                  className="w-13 h-13 rounded-2xl object-cover ring-1 ring-[#1F4735]/15 flex-shrink-0"
+                />
+                <div className="space-y-1.5">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="text-[11px] font-sans font-medium text-[#2A5C46] bg-[#E8F1EC] px-2.5 py-0.5 rounded-full capitalize">
+                      {job.job_type.replace('_', ' ')}
                     </span>
-                  ))}
+                    <span className="text-xs text-[#708077] flex items-center gap-1">
+                      <MapPin className="w-3 h-3 text-[#D96B47]" />
+                      <span>{job.dubai_area}</span>
+                    </span>
+                  </div>
+
+                  <h3 className="font-serif text-xl text-[#10271D]">
+                    {job.title}
+                  </h3>
+
+                  <p className="text-xs font-medium text-[#52665E] flex items-center gap-1">
+                    <Building2 className="w-3.5 h-3.5 text-[#708077]" />
+                    <span>{job.company_name}</span>
+                  </p>
+
+                  <p className="text-xs text-[#52665E] max-w-2xl leading-relaxed">
+                    {job.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {job.required_skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="text-[10px] text-[#4A5E53] bg-[#FAF8F4] px-2 py-0.5 rounded-md border border-[#EDE8DE]"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Compensation & LinkedIn Apply CTA */}
-            <div className="flex flex-col sm:flex-row md:flex-col items-start sm:items-center md:items-end justify-between gap-3 flex-shrink-0 pt-4 md:pt-0 border-t md:border-t-0 border-slate-100">
-              {job.salary_range && (
-                <div className="text-xs font-bold text-slate-800 bg-emerald-50/70 border border-emerald-100 px-3 py-1.5 rounded-xl">
-                  {job.salary_range}
-                </div>
-              )}
+              {/* Salary & LinkedIn CTA */}
+              <div className="flex flex-col sm:flex-row md:flex-col items-start sm:items-center md:items-end justify-between gap-3 flex-shrink-0 pt-4 md:pt-0 border-t md:border-t-0 border-[#EDE8DE]">
+                {job.salary_range && (
+                  <span className="text-xs font-semibold text-[#10271D] bg-[#F5F2EB] px-3 py-1.5 rounded-xl border border-[#EDE8DE]">
+                    {job.salary_range}
+                  </span>
+                )}
 
-              <a
-                href={job.linkedin_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center space-x-2 bg-[#0A66C2] hover:bg-[#004182] text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-sm transition-transform active:scale-95"
-              >
-                <span>Apply on LinkedIn</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
+                <a
+                  href={job.linkedin_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-2 bg-[#1F4735] hover:bg-[#16382B] text-white text-xs font-medium px-5 py-2.5 rounded-full transition-all shadow-xs"
+                >
+                  <span>Apply on LinkedIn</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
       </div>
     </div>
   );
